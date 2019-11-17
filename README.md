@@ -29,11 +29,11 @@ Start container from their script
 
 It spawns 2 container with name 'salt' (master) and 'salt-minion' in the SWsalt network.
 
-### docker-composite
+### docker-compose
 ```
-docker-composite build
+docker-compose build
 docker-compose up --scale salt-minion=10 -d #spawns 10 salt-minions
-docker-composite down #shutdown
+docker-compose down #shutdown
 ```
 
 #### Usage
