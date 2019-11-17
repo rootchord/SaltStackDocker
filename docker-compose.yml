@@ -1,0 +1,28 @@
+version: "3.7"
+services: 
+  salt-master:
+    build:
+      context: .
+      dockerfile: salt-master/Dockerfile
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /tmp:/run 
+    networks:
+      NWsalt:
+        aliases:
+          - salt
+          - salt-master
+  salt-minion:
+    build:
+      context: .
+      dockerfile: salt-minion/Dockerfile
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /run
+    networks:
+      - NWsalt
+    depends_on:
+      - salt-master
+
+networks:
+  NWsalt:
