@@ -3,11 +3,17 @@ salt-master and minion in docker based on CentOS7.
 The salt-master auto accepts every minion.
 
 - [SaltStackDocker](#saltstackdocker)
+  * [Requirements](#requirements)
   * [Installation](#installation)
     + [docker run](#docker-run)
       - [Usage](#usage)
     + [docker-compose](#docker-compose)
       - [Usage](#usage-1)
+## Requirements
+It was tested with following components:
+ - docker-compose version 1.24.1, build 4667896b
+ - Docker version 18.09.7, build 2d0083d
+ - Ubuntu 16.04.6 LTS (Linux ubuntu 4.15.0-51-generic #55~16.04.1-Ubuntu)
 
 ## Installation
 ### docker run
