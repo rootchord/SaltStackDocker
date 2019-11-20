@@ -51,23 +51,23 @@ deploy-master:
 		| oc apply -f  -
 
 undeploy-master:
-	@oc apply -n $(NAMESPACE) -f ./openshift/salt-master-service.yaml; \
+	@oc delete -n $(NAMESPACE) -f ./openshift/salt-master-service.yaml; \
 	sed 's|@@IMAGE_REF@@|$(IMAGE_REF_MASTER)|g' $(K8S_DEFINITION_MASTER) \
 		| sed 's|@@NAMESPACE@@|$(NAMESPACE)|g' \
 		| sed 's|@@REPLICA_COUNT@@|$(REPLICA_MASTER)|g' \
 		| oc delete -f  -
 
 deploy-minion:
-	sed 's|@@IMAGE_REF@@|$(IMAGE_REF_MINION)|g' $(K8S_DEFINITION_MINION) \
+	@sed 's|@@IMAGE_REF@@|$(IMAGE_REF_MINION)|g' $(K8S_DEFINITION_MINION) \
 		| sed 's|@@NAMESPACE@@|$(NAMESPACE)|g' \
 		| sed 's|@@REPLICA_COUNT@@|$(REPLICA_MINION)|g' \
 		| oc apply -f  -
 
 undeploy-minion:
-	sed 's|@@IMAGE_REF@@|$(IMAGE_REF_MINION)|g' $(K8S_DEFINITION_MINION) \
+	@sed 's|@@IMAGE_REF@@|$(IMAGE_REF_MINION)|g' $(K8S_DEFINITION_MINION) \
 		| sed 's|@@NAMESPACE@@|$(NAMESPACE)|g' \
 		| sed 's|@@REPLICA_COUNT@@|$(REPLICA_MINION)|g' \
 		| oc delete -f  -
 
 exec-master:
-	oc exec -it -n $(NAMESPACE) `oc get pods -n $(NAMESPACE) | grep salt-master | awk '{print $1}'` -- /bin/bash
+	@oc exec -it -n $(NAMESPACE) `oc get pods -n $(NAMESPACE) -l app=salt-master -o jsonpath={.items[*].metadata.name}` -- /bin/bash;
