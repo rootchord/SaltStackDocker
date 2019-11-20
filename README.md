@@ -9,6 +9,9 @@ The salt-master auto accepts every minion.
       - [Usage](#usage)
     + [docker-compose](#docker-compose)
       - [Usage](#usage-1)
+  * [OpenShift](#openshift)
+    + [Images](#images)
+    + [Deployment](#deployment)
 ## Requirements
 It was tested with following components:
  - docker-compose version 1.24.1, build 4667896b
@@ -107,3 +110,16 @@ docker-compose exec --index=7 salt-minion bash
    Active: active (running) since Sun 2019-11-17 16:57:53 UTC; 4min 9s ago
 [...]
 ```
+
+## OpenShift
+### Images
+Images are using `centos/systemd` base image, on top of which `salt` packages are installed. There are currently two images available:
+* `salt-master`
+* `salt-minion`, which currently includes only `centos7` OS
+
+### Deployment
+SaltStack is deployed on OpenShift using `make` targets:
+* to deploy/undeploy Salt Master, use `make deploy-master` / `make undeploy-master`
+* to deploy/undeploy Salt Minion, use `make deploy-minion` / `make undeploy-minion`
+* to access Salt Master, use `make exec-master`
+All parameters can be configured via `Makefile`
