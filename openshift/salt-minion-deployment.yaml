@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: salt-minion
+  namespace: @@NAMESPACE@@
+  labels:
+    app: salt-minion
+spec:
+  replicas: @@REPLICA_COUNT@@
+  template:
+    metadata:
+      labels:
+        app: salt-minion
+    spec:
+      containers:
+      - name: salt-minion
+        imagePullPolicy: Always
+        image: @@IMAGE_REF@@
+      imagePullSecrets:
+        - name: telekomaustria
+
