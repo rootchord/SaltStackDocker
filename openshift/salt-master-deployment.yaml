@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: salt-master
+  namespace: @@NAMESPACE@@
+  labels:
+    app: salt-master
+spec:
+  replicas: @@REPLICA_COUNT@@
+  template:
+    metadata:
+      labels:
+        app: salt-master
+    spec:
+      containers:
+      - name: salt-master
+        imagePullPolicy: Always
+        image: @@IMAGE_REF@@
+        ports:
+        - containerPort: 4505
+          name: publish
+          protocol: TCP
+        - containerPort: 4506
+          name: request
+          protocol: TCP
+      imagePullSecrets:
+        - name: telekomaustria
