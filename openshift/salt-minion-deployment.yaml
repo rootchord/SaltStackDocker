@@ -16,4 +16,5 @@ spec:
       - name: salt-minion
         imagePullPolicy: Always
         image: @@IMAGE_REF@@
-
+      securityContext:
+        runAsUser: 0
