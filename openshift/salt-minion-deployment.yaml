@@ -16,6 +16,4 @@ spec:
       - name: salt-minion
         imagePullPolicy: Always
         image: @@IMAGE_REF@@
-      imagePullSecrets:
-        - name: telekomaustria
 

@@ -23,5 +23,3 @@ spec:
         - containerPort: 4506
           name: request
           protocol: TCP
-      imagePullSecrets:
-        - name: telekomaustria
