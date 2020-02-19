@@ -1,4 +1,4 @@
-REGISTRY_NAME = telekomaustria
+REGISTRY_NAME = bostjanbozic
 IMAGE_MASTER = salt-master
 IMAGE_MINION = salt-minion
 TAG_MASTER = 0.0.1
